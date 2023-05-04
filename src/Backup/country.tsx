@@ -204,8 +204,8 @@ const country: Template<TemplateRenderProps> = ({
     slug,
     _site,
     address,
-    c_locatorBannerImage,
-    c_locatorBannerTitle,
+    // c_locatorBannerImage,
+    // c_locatorBannerTitle,
     dm_directoryParents,
     dm_directoryChildren
   } = document;
@@ -269,9 +269,9 @@ const country: Template<TemplateRenderProps> = ({
   }) : null;
 
 
-  let bannerimage = c_locatorBannerImage ? c_locatorBannerImage.map((element: any) => {
-    return element.url
-  }) : null;
+  // let bannerimage = c_locatorBannerImage ? c_locatorBannerImage.map((element: any) => {
+  //   return element.url
+  // }) : null;
 
   return (
     <>

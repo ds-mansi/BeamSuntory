@@ -159,15 +159,15 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
         },
       },
 
-      {
-        type: "link",
-        attributes: {
-          rel: "canonical",
-          href: `${document._site.c_canonical?document.c_canonical:stagingBaseurl
+      // {
+      //   type: "link",
+      //   attributes: {
+      //     rel: "canonical",
+      //     href: `${document._site.c_canonical?document.c_canonical:stagingBaseurl
 
-            }${document.slug?document.slug:`${document.name.toLowerCase()}`}.html`,
-        },
-      },
+      //       }${document.slug?document.slug:`${document.name.toLowerCase()}`}.html`,
+      //   },
+      // },
 
       {
         type: "meta",
@@ -266,7 +266,6 @@ const Location: Template<ExternalApiRenderData> = ({
     mainPhone,
     photoGallery,
     c_banner_image,
-    c_canonical,
     description,
     additionalHoursText,
     timezone,
@@ -391,11 +390,11 @@ breadcrumbScheme.push({
     name: document.name,
   },
 });
-  let imageurl = photoGallery ? photoGallery.map((element: any) => {
-    return element.image.url
-  }) : null;
-  console.log(document)
-  let bannerimage = c_banner_image && c_banner_image.image.url;
+  // let imageurl = photoGallery ? photoGallery.map((element: any) => {
+  //   return element.image.url
+  // }) : null;
+  // console.log(document)
+  // let bannerimage = c_banner_image && c_banner_image.image.url;
 
 
   return (
@@ -419,7 +418,7 @@ breadcrumbScheme.push({
           description: description,
           image: imageurl,
           telephone: mainPhone,
-          url: `${c_canonical?c_canonical:stagingBaseurl}${slug?slug:`${name}`}.html`
+          // url: `${c_canonical?c_canonical:stagingBaseurl}${slug?slug:`${name}`}.html`
         }}
       />
       <JsonLd<BreadcrumbList>
@@ -445,7 +444,7 @@ breadcrumbScheme.push({
 
       <div className="container">
             <div className='banner-text banner-dark-bg justify-center text-center'>
-              <h1 className="">{name} {name}</h1>
+              <h1 className="">{name}</h1>
                 <div className="openClosestatus detail-page closeing-div">
                   <OpenClose timezone={timezone} hours={hours} />
                 </div> 
