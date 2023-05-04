@@ -416,7 +416,7 @@ breadcrumbScheme.push({
           },
           openingHoursSpecification: hoursSchema,
           description: description,
-          image: imageurl,
+          // image: imageurl,
           telephone: mainPhone,
           // url: `${c_canonical?c_canonical:stagingBaseurl}${slug?slug:`${name}`}.html`
         }}
