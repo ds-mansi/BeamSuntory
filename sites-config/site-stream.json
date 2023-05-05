@@ -5,11 +5,15 @@
   },
   "source": "knowledgeGraph",
   "fields": [
-      "name"
-
+      "name",
+      "c_header",
+      "c_footerListing",
+      "c_socialLinkText",
+      "c_socialIcon",
+      "c_copyright"
   ],
   "localization": {
-    "locales": ["en_GB"],
+    "locales": ["en"],
     "primary": false
   }
 }

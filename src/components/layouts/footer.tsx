@@ -1,171 +1,110 @@
 import * as React from "react";
-import "../../index.css";
-import logofooter from "../../images/logo-footer.svg";
-import facebook from "../../images/facebook.svg";
-import instagram from "../../images/instagram.svg";
-import twitter from "../../images/twitter.svg";
-import youtube from "../../images/youtube.svg";
-import printest from "../../images/printest.svg";
-import { cookieText, cookiesUrl } from "../../../sites-global/global"
-import CookieConsent from "react-cookie-consent";
-import { StaticData } from "../../../sites-global/staticData";
-import { useEffect, useState } from "react";
-import Link from "../commons/Link";
-
+type props = {
+  flist: any;
+  site: any;
+  icon: any;
+  copy: any;
+};
+// props call
 const Footer = (props: any) => {
-	const { footer } = props;
-	// const [isNavVisible, setNavVisibility] =  useState(false);
-	const [isSmallScreen, setIsSmallScreen] = useState(false);
-	console.log(footer)
-	useEffect(() => {
-		const mediaQuery = window.matchMedia("(max-width: 1024px)");
-		mediaQuery.addListener(handleMediaQueryChange);
-		handleMediaQueryChange(mediaQuery);
+  console.log(props?.copy, "props");
+  React.useEffect(() => {
+    document.body.setAttribute("id", "body");
+  });
+  const toggle = () => {
+    (document.getElementById("body") as HTMLInputElement).classList.toggle("");
+  };
 
-		return () => {
-			mediaQuery.removeListener(handleMediaQueryChange);
-		};
-	}, []);
+  const listone = props?.flist?.listOne?.map((item: any) => {
+    // console.log(item,"item")
+    return (
+      <ul>
+        <li className="mb-4" style={{ paddingLeft: "4rem", fontSize: "15px" }}>
+          <a href={item.link} className="uppercase">
+            {item?.label}
+          </a>
+        </li>
+      </ul>
+    );
+  });
 
-	const handleMediaQueryChange = mediaQuery => {
-		if (mediaQuery.matches) {
-			setIsSmallScreen(true);
-		} else {
-			setIsSmallScreen(false);
-		}
-	};
-	// if (typeof window !== "undefined") {
-	// 	mediaQuery = window?.innerWidth;
-	// }
+  const listtwo = props?.flist?.listTwo?.map((item: any) => {
+    // console.log(item,"item")
+    return (
+      <ul>
+        <li className="mb-4" style={{ paddingLeft: "7rem" }}>
+          <a href={item.link} className="uppercase">
+            {item?.label}
+          </a>
+        </li>
+      </ul>
+    );
+  });
 
+  const privacy = props?.flist?.privacyPolicyListing?.map((item: any) => {
+    // console.log(item,"item123")
+    return (
+      <ul>
+        <li className="mb-1" style={{ paddingLeft: "7rem", color: "#756757" }}>
+          <a href={item.link} className="uppercase">
+            {item?.label}
+          </a>
+        </li>
+      </ul>
+    );
+  });
 
-	return (
-		<>
-
-			<footer className="site-footer">
-
-				<div className="container">
-
-					<div className="store-locator">
-					<div className="company-logo mr-4">
-							<img src={footer.c_matalan_footer_logo.url} alt="logo"/>
-							</div>
-						{footer.c_store_finder.map((storfinder: any) => {
-							console.log(storfinder)
-							return (
-								<>
-									<div className="store-inner">
-										<img src={storfinder.icon.url} alt="store-finder" />
-										<Link props={storfinder.cTA}/>
-
-									</div>
-								</>
-							)
-						})}
-
-
-						<div className="store-inner flex flex-raw">
-							<div>
-							<img src={footer.c_fAQs.icon.url} alt="faq-icon" />
-
-							<Link props={footer.c_fAQs.cTA} />
-							</div>
-							<div>
-
-							<img src={footer.c_getAQuate.icon.url} alt="faq-icon" />
-
-							<Link props={footer.c_getAQuate.cTA} />
-							</div>
-						</div>
-						
-
-						
-
-
-
-
-					</div>
-					
-
-					<div className="link-sec-footer ">
-					{footer.c_customer_services?
-						<div className="footer-block">
-							<h4 className="footer-block-title">{footer.c_customer_services.headerLinksHeading}</h4>
-							<ul className="list-none">
-								{footer.c_customer_services.headerLinks.map((customerService: any) => {
-									return (<li>
-											<Link props={customerService}/>
-										</li>)
-								})}
-							</ul>
-						</div>:''}
-						{footer.c_about_matalan?
-						<div className="footer-block">
-							<h4 className="footer-block-title">{footer.c_about_matalan.headerLinksHeading}</h4>
-							<ul className="list-none"><li>{footer.c_about_matalan.headerLinksHeading}</li>
-								{footer.c_about_matalan.headerLinks.map((aboutMatalan: any) => {
-									return (<li>
-										<Link props={aboutMatalan}/>
-										</li>)
-								})}
-							</ul>
-						</div>:''}
-						{footer.c_our_website?
-						<div className="footer-block">
-							<h4 className="footer-block-title">{footer.c_our_website.headerLinksHeading}</h4>
-							<ul className="list-none">
-								{footer.c_our_website.headerLinks.map((ourWebsite: any) => {
-									return (<li>
-										<Link props={ourWebsite}/>
-									</li>)
-								})}
-							</ul>
-						</div>:''}
-						<div className="footer-block">
-						<ul className="social-media-bx">
-							{footer.c_socialIcons.map((icon: any) => {
-								return (
-
-									<>
-										<li className=""> <a href={icon.cTA.link} target="_blank"><img src={icon.icon.url} height="20" alt="social" width="21" className="inline-block w-5 h-auto" /> </a> </li>
-									</>
-								)
-							})}
-						</ul>
-						</div>
-
-					</div>
-					<div className="copyright-bx">
-						<span className="text-xs flex-wrap" data-copyright="">
-							{footer.c_footerDescription}</span>
-
-						
-					</div>
-
-				</div>
-
-			</footer>
-
-			<CookieConsent
-				buttonText={"Accept"}
-				buttonStyle={{
-					marginLeft: "100px",
-				}}
-			>
-				<p>
-					{cookieText}
-					<a className="text-cookies-link" href={cookiesUrl}>
-						{StaticData.cookie}
-					</a>
-					.
-				</p>
-			</CookieConsent>
-		</>
-	);
+  const icons = props?.icon?.map?.((item: any) => {
+    // console.log(item,"any")
+    return (
+      <>
+        <a href={item?.socialLink?.link}>
+          <ul>
+            <li>
+              <img
+                src={item?.socialIcon?.url}
+                style={{ height: "35px", paddingRight: "35px" }}
+              />
+            </li>
+          </ul>
+        </a>
+      </>
+    );
+  });
+  // console.log(props?.site?.c_socialLinkText,"rops?.c_socialLinkText")
+  return (
+    <>
+      <div className="flex">
+        <div>{listone}</div>
+        <div>{listtwo}</div>
+        <div>{privacy}</div>
+        <div style={{ paddingLeft: "5rem" }}>
+          <h3
+            className="uppercase"
+            style={{ paddingBottom: "15px", color: "#756757" }}
+          >
+            {props?.site?.c_socialLinkText}
+          </h3>
+          <div className="flex ">{icons}</div>
+        </div>
+      </div>
+      <div>
+        <img
+          src={props?.copy?.imageCopyright?.url}
+          style={{ width: "15%", padding: "10px 0px 15px 50px" }}
+        />
+      </div>
+      <div className="flex" style={{ gap: "65rem" }}>
+        <p style={{ color: "#756757", padding: "5px 0px 0px 50px" }}>
+          {props?.copy?.textCopyright}
+        </p>
+        <img
+          src={props?.copy?.suntoryImage.url}
+          style={{ padding: "0px 10px 30px 0px" }}
+        />
+      </div>
+    </>
+  );
 };
 
 export default Footer;
-function handleMediaQueryChange(mediaQuery: MediaQueryList) {
-	throw new Error("Function not implemented.");
-}
-

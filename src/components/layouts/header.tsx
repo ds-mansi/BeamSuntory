@@ -1,51 +1,50 @@
 import * as React from "react";
-import Cta from "../commons/cta";
+import { stagingBaseurl } from "../../../sites-global/global";
+import HeaderMarker from "../../images/HeaderMarker.svg";
+import headerMap from "../../images/HeaderMap.svg";
 
-  type Link = {
-    label: string;
-    url: string;
-  };
+type props = {
+  _site: any;
+  head: any;
+  navbar: any;
+};
 
-  const links: Link[] = [
-    {
-      label: "Home",
-      url: "/",
-    },
-    {
-      label: "About",
-      url: "/about",
-    },
-    {
-      label: "Menu",
-      url: "/menu.html",
-    },
-    {
-      label: "Locator",
-      url: "/locator",
-    }
-  ];
+const Header = (props: any) => {
+  // console.log(props, "props");
+  React.useEffect(() => {
+    document.body.setAttribute("id", "body");
+  });
+  // console.log(props?.navbar, "props123");
 
-  const Header = () => {
-    const linkDoms = links.map((link) => (
-      <div key={link.label}>
-        <a href={link.url} >
-          {link.label}
-        </a>
-      </div>
-    ));
-
+  const nav = props?.navbar?.map((n: any) => {
+    // console.log(n, "n");
+    return (
+      <ul>
+        <li>
+          <a href={n?.link} style={{ paddingRight: "60px", fontSize: "16px" }}>
+            {n?.label}
+          </a>
+        </li>
+      </ul>
+    );
+  });
   return (
     <>
-      <div className="centered-container">
-        <nav className="py-3 flex items-center justify-between">
-          <img
-              src="https://a.mktgcdn.com/p/8esDUBrhKJnkaVztLihLsC3quv_5BjLFG9L6MJ0adcs/150x150.png">
-            <div className="flex gap-x-10 text-lg font-semibold">{linkDoms}</div>
-          <div className="hidden space-x-5 sm:block">
-            <Cta buttonText="Order Pickup" url="#" style="primary-cta"></Cta>
-            <Cta buttonText="Order Delivery" url="#" style="secondary-cta"></Cta>
-          </div>
-        </nav>
+      <div className="flex justify-between" style={{ padding: "0.7rem 1rem" }}>
+        <img
+          src={props?.head?.logo?.url}
+          style={{
+            height: "39px",
+            width: "217px",
+            marginTop: "30px",
+            marginLeft: "50px",
+          }}
+        />
+        <div
+          style={{ display: "flex", alignItems: "center", marginRight: "70px" }}
+        >
+          {nav}
+        </div>
       </div>
     </>
   );
