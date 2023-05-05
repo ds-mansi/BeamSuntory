@@ -74,7 +74,7 @@ const Footer = (props: any) => {
   // console.log(props?.site?.c_socialLinkText,"rops?.c_socialLinkText")
   return (
     <>
-      <div className="flex">
+      <div className="flex pt-5">
         <div>{listone}</div>
         <div>{listtwo}</div>
         <div>{privacy}</div>
